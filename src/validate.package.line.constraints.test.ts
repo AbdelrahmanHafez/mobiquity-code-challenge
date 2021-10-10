@@ -116,4 +116,7 @@ describe('validateConstaints(...)', () => {
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, false);
   });
+  xit('is invalid when the items are more than 15', () => {
+
+  });
 });

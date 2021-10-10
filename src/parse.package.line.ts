@@ -1,12 +1,12 @@
-import { IItem, IParsedPackageLine } from 'types';
+import { IItem, IParsedPackageLine, IRawItem, IRawLine } from 'types';
 
-export default function parsePackageLine(rawText: string): IParsedPackageLine {
+export default function parsePackageLine(rawLine: IRawLine): IParsedPackageLine {
   try {
-    if (validateRawPackageLine(rawText) === false) {
-      throw new Error(`Invalid package line \`${rawText}\``);
+    if (validateRawPackageLine(rawLine) === false) {
+      throw new Error(`Invalid package line \`${rawLine}\``);
     }
 
-    const [maximumWeightStringifed, rawItems] = rawText.split(' : ');
+    const [maximumWeightStringifed, rawItems] = rawLine.split(' : ');
 
     const maximumWeight = Number(maximumWeightStringifed);
 
@@ -17,7 +17,7 @@ export default function parsePackageLine(rawText: string): IParsedPackageLine {
       items
     };
   } catch (err) {
-    throw new Error(`Invalid package line \`${rawText}\``);
+    throw new Error(`Invalid package line \`${rawLine}\``);
   }
 }
 
@@ -32,12 +32,11 @@ function extractItems(rawlItems: string): IItem[] {
   });
 }
 
-function sanitizeRawItem(rawItem: string) {
+function sanitizeRawItem(rawItem: IRawItem) {
   return rawItem.replace(/[()€]/g, '');
 }
 
 export function validateRawPackageLine(string) {
-
   const numberWithPossibleDecimalsRegEx = '\\d+(\\.\\d+)?';
   const num = numberWithPossibleDecimalsRegEx;
   const packageLineRegex = new RegExp(`^${num} : (\\(${num},${num},€${num}\\))( (\\(${num},${num},€${num}\\))){0,}$`);

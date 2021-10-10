@@ -8,3 +8,7 @@ export interface IItem{
  cost: number,
  weight: number
 }
+
+export type ILineResult = string;
+export type IRawLine = string;
+export type IRawItem = string;
