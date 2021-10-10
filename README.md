@@ -1,7 +1,7 @@
 # Mobiquity code challenge
 This repository includes the code challenge result for Mobiquity.
 
-It's an application of dynamic programming, specifically The Knapsack Problem.
+It's an application of [dynamic programming](https://livebook.manning.com/book/grokking-algorithms/chapter-9/), specifically [The Knapsack Problem](https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/).
 
 The following technologies are used to solve this problem:
 * TypeScript as the language.
