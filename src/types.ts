@@ -1,9 +1,9 @@
 export interface IParsedPackageLine{
   maximumWeight: number,
-  optionalItems: IOptionalItem[]
+  items: IItem[]
 }
 
-export interface IOptionalItem{
+export interface IItem{
  index: number,
  cost: number,
  weight: number

@@ -1,29 +1,29 @@
-import { IOptionalItem, IParsedPackageLine } from 'types';
+import { IItem, IParsedPackageLine } from 'types';
 
 export default function parsePackageLine(rawText: string): IParsedPackageLine {
   try {
-    if (isValidPackageLine(rawText) === false) {
+    if (validateRawPackageLine(rawText) === false) {
       throw new Error(`Invalid package line \`${rawText}\``);
     }
 
-    const [maximumWeightStringifed, rawOptionalItems] = rawText.split(' : ');
+    const [maximumWeightStringifed, rawItems] = rawText.split(' : ');
 
     const maximumWeight = Number(maximumWeightStringifed);
 
-    const optionalItems = extractOptionalItems(rawOptionalItems);
+    const items = extractItems(rawItems);
 
     return {
       maximumWeight,
-      optionalItems
+      items
     };
   } catch (err) {
     throw new Error(`Invalid package line \`${rawText}\``);
   }
 }
 
-function extractOptionalItems(rawOptionalItems: string): IOptionalItem[] {
-  return rawOptionalItems.split(' ').map((rawOptionalItem) => {
-    const [stringifiedIndex, stringifedWeight, stringifiedCost] = sanitizeRawOptionalItem(rawOptionalItem).split(',');
+function extractItems(rawlItems: string): IItem[] {
+  return rawlItems.split(' ').map((rawItem) => {
+    const [stringifiedIndex, stringifedWeight, stringifiedCost] = sanitizeRawItem(rawItem).split(',');
     return {
       index: Number(stringifiedIndex),
       weight: Number(stringifedWeight),
@@ -32,11 +32,11 @@ function extractOptionalItems(rawOptionalItems: string): IOptionalItem[] {
   });
 }
 
-function sanitizeRawOptionalItem(rawOptionalItem: string) {
-  return rawOptionalItem.replace(/[()€]/g, '');
+function sanitizeRawItem(rawItem: string) {
+  return rawItem.replace(/[()€]/g, '');
 }
 
-export function isValidPackageLine(string) {
+export function validateRawPackageLine(string) {
   const packageLineRegex = /^\d+(\.\d+)? : (\(\d+(\.\d+)?,\d+(\.\d+)?,€\d+(\.\d+)?\))( (\(\d+(\.\d+)?,\d+(\.\d+)?,€\d+(\.\d+)?\))){0,}$/;
   return packageLineRegex.test(string);
 }
