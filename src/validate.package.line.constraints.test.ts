@@ -91,7 +91,26 @@ describe('validateConstaints(...)', () => {
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, false);
   });
-  xit('is invalid when the items are more than 15', () => {
 
+  it('is invalid when the items count surpass the maximum', () => {
+    // Arrange
+    const parsedPackageLine: IParsedPackageLine = {
+      maximumWeight: 30,
+      items: []
+    };
+
+    for (let i = 0; i < CONSTANTS.MAX_ITEMS_COUNT_TO_CHOOSE_FROM + 1; i++) {
+      parsedPackageLine.items.push({ index: i + 1, cost: 80, weight: 8 });
+    }
+
+    // Act
+    const result = validateConstaints(parsedPackageLine);
+
+    // Assert
+    assert.deepStrictEqual(result.isValid, false);
+    assert.deepStrictEqual(result.itemsCountIsValid, false);
+    assert.deepStrictEqual(result.maxCostIsValid, true);
+    assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
+    assert.deepStrictEqual(result.maxWeightPerPackageIsValid, true);
   });
 });
