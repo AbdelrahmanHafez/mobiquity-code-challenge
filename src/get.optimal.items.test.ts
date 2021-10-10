@@ -69,36 +69,75 @@ describe('getOptimalItems(...)', () => {
     // Assert
     assert.deepStrictEqual(receivedResponse, '8,9');
   });
-  it('picks the items with the lowest weights if both have the same value', () => {
-    // Arrange
-    const parsedPackageLine: IParsedPackageLine = {
-      maximumWeight: 10,
-      items: [
-        { index: 1, weight: 8, cost: 13 },
-        { index: 2, weight: 7, cost: 13 }
-      ]
-    };
+  describe('picks the items with the lowest weights if both have the same value', () => {
+    it('2 items, last item is lower in weight', () => {
+      // Arrange
+      const parsedPackageLine: IParsedPackageLine = {
+        maximumWeight: 10,
+        items: [
+          { index: 1, weight: 8, cost: 13 },
+          { index: 2, weight: 7, cost: 13 }
+        ]
+      };
 
-    // Act
-    const receivedResponse = getOptimalItems(parsedPackageLine);
+      // Act
+      const receivedResponse = getOptimalItems(parsedPackageLine);
 
-    // Assert
-    assert.deepStrictEqual(receivedResponse, '2');
+      // Assert
+      assert.deepStrictEqual(receivedResponse, '2');
+    });
+
+    it('2 items, first item is lower in weight', () => {
+      // Arrange
+      const parsedPackageLine: IParsedPackageLine = {
+        maximumWeight: 10,
+        items: [
+          { index: 1, weight: 7, cost: 13 },
+          { index: 2, weight: 8, cost: 13 }
+        ]
+      };
+
+      // Act
+      const receivedResponse = getOptimalItems(parsedPackageLine);
+
+      // Assert
+      assert.deepStrictEqual(receivedResponse, '1');
+    });
+
+    it('3 items, lowest weight first', () => {
+      // Arrange
+      const parsedPackageLine: IParsedPackageLine = {
+        maximumWeight: 10,
+        items: [
+          { index: 1, weight: 7, cost: 13 },
+          { index: 2, weight: 5, cost: 10 },
+          { index: 3, weight: 5, cost: 3 }
+        ]
+      };
+
+      // Act
+      const receivedResponse = getOptimalItems(parsedPackageLine);
+
+      // Assert
+      assert.deepStrictEqual(receivedResponse, '1');
+    });
+    it('3 items, lowest weight last', () => {
+      // Arrange
+      const parsedPackageLine: IParsedPackageLine = {
+        maximumWeight: 10,
+        items: [
+          { index: 1, weight: 5, cost: 10 },
+          { index: 2, weight: 5, cost: 3 },
+          { index: 3, weight: 7, cost: 13 }
+        ]
+      };
+
+      // Act
+      const receivedResponse = getOptimalItems(parsedPackageLine);
+
+      // Assert
+      assert.deepStrictEqual(receivedResponse, '3');
+    });
   });
-  xit('picks the items with the lowest weights if both have the same value, order does not matter', () => {
-    // Arrange
-    const parsedPackageLine: IParsedPackageLine = {
-      maximumWeight: 10,
-      items: [
-        { index: 1, weight: 7, cost: 13 },
-        { index: 2, weight: 8, cost: 13 }
-      ]
-    };
 
-    // Act
-    const receivedResponse = getOptimalItems(parsedPackageLine);
-
-    // Assert
-    assert.deepStrictEqual(receivedResponse, '1');
-  });
 });

@@ -63,10 +63,10 @@ function getCell(grid: IGrid, items: IItem[], itemIndex: number, maxWeightForCel
   const newValue = bestValueForRemainingWeight + currentItem.cost;
   const newItems = [...bestCellForRemainingWeight.items, currentItem];
 
-  if (newValue >= lastValue) {
+  if (newValue > lastValue) {
     return { maxValue: newValue, items: newItems };
   } else if (newValue === lastValue) {
-    const newItemsWeight = items.reduce((sum, item) => sum + item.weight, 0);
+    const newItemsWeight = newItems.reduce((sum, item) => sum + item.weight, 0);
     const lastSolutionItemsWeight = lastBestCellForThisWeight.items.reduce((sum, item) => sum + item.weight, 0);
     const lastSolutionIsBetter = newItemsWeight > lastSolutionItemsWeight;
 
