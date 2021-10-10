@@ -22,7 +22,7 @@ describe('processLine(...)', () => {
   ];
 
   for (const testCase of testCases) {
-    xit(testCase.rawLine, () => {
+    it(testCase.rawLine, () => {
       // Arrange
       const { rawLine } = testCase;
 

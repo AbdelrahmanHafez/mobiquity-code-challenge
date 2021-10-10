@@ -5,7 +5,7 @@ describe('pack(...)', () => {
   it('is a function', () => {
     assert.equal(typeof pack, 'function');
   });
-  it.only('returns the optimal items', async() => {
+  it('returns the optimal items', async() => {
     // Arrange
 
 

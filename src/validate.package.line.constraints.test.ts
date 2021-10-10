@@ -27,28 +27,6 @@ describe('validateConstaints(...)', () => {
 
     // Assert
     assert.deepStrictEqual(result.isValid, true);
-    assert.deepStrictEqual(result.allItemsAreLessThanMaxPackageWeight, true);
-    assert.deepStrictEqual(result.maxCostIsValid, true);
-    assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
-    assert.deepStrictEqual(result.maxWeightPerPackageIsValid, true);
-  });
-  it('is invalid when one item surpasses package weight', () => {
-    // Arrange
-    const parsedPackageLine: IParsedPackageLine = {
-      maximumWeight: 10,
-      items: [
-        { index: 1, cost: 80, weight: 10.2 },
-        { index: 2, cost: 60, weight: 3 },
-        { index: 3, cost: 5, weight: 8 }
-      ]
-    };
-
-    // Act
-    const result = validateConstaints(parsedPackageLine);
-
-    // Assert
-    assert.deepStrictEqual(result.isValid, false);
-    assert.deepStrictEqual(result.allItemsAreLessThanMaxPackageWeight, false);
     assert.deepStrictEqual(result.maxCostIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, true);
@@ -69,7 +47,6 @@ describe('validateConstaints(...)', () => {
 
     // Assert
     assert.deepStrictEqual(result.isValid, false);
-    assert.deepStrictEqual(result.allItemsAreLessThanMaxPackageWeight, true);
     assert.deepStrictEqual(result.maxCostIsValid, false);
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, true);
@@ -90,7 +67,6 @@ describe('validateConstaints(...)', () => {
 
     // Assert
     assert.deepStrictEqual(result.isValid, false);
-    assert.deepStrictEqual(result.allItemsAreLessThanMaxPackageWeight, false);
     assert.deepStrictEqual(result.maxCostIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, false);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, true);
@@ -111,7 +87,6 @@ describe('validateConstaints(...)', () => {
 
     // Assert
     assert.deepStrictEqual(result.isValid, false);
-    assert.deepStrictEqual(result.allItemsAreLessThanMaxPackageWeight, true);
     assert.deepStrictEqual(result.maxCostIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerItemIsValid, true);
     assert.deepStrictEqual(result.maxWeightPerPackageIsValid, false);

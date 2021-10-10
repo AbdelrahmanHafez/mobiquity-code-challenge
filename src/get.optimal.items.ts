@@ -1,5 +1,6 @@
 // This is a knapsack sort of problem, using dynamic programming can give us a deterministic solution
-// You can read this chapter for free here: https://livebook.manning.com/book/grokking-algorithms/chapter-9/1
+// This topic is explained in Grokking Algorithms Chapter 9, you can check it from the link below:
+// https://livebook.manning.com/book/grokking-algorithms/chapter-9/1
 
 import { IGrid, IGridCell, IItem, IParsedPackageLine } from 'types';
 import _ from 'lodash';
@@ -13,7 +14,7 @@ export default function getOptimalItems(parsedPackageLine: IParsedPackageLine) {
   const grid = buildGrid(parsedPackageLine);
   const bestItems = getBestItems(grid);
 
-  return bestItems.map(item => item.index).join(',');
+  return bestItems.map(item => item.index).join(',') || '-';
 }
 
 function getBestItems(grid: IGrid) {

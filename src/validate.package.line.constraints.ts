@@ -3,9 +3,6 @@ import { IParsedPackageLine } from 'types';
 
 export default function validatePackageLineConstraints(parsedPackageLine: IParsedPackageLine) {
 
-  const allItemsAreLessThanMaxPackageWeight = parsedPackageLine.items.every(item => {
-    return item.weight <= parsedPackageLine.maximumWeight;
-  });
   const maxCostIsValid = parsedPackageLine.items.every(item => {
     return item.cost <= CONSTANTS.MAX_COST;
   });
@@ -14,12 +11,11 @@ export default function validatePackageLineConstraints(parsedPackageLine: IParse
   });
   const maxWeightPerPackageIsValid = parsedPackageLine.maximumWeight <= CONSTANTS.MAX_WEIGHT_PER_PACKAGE;
 
-  const isValid = allItemsAreLessThanMaxPackageWeight && maxCostIsValid && maxWeightPerItemIsValid && maxWeightPerPackageIsValid;
+  const isValid = maxCostIsValid && maxWeightPerItemIsValid && maxWeightPerPackageIsValid;
 
   return {
     isValid,
     maxCostIsValid,
-    allItemsAreLessThanMaxPackageWeight,
     maxWeightPerItemIsValid,
     maxWeightPerPackageIsValid
   };
