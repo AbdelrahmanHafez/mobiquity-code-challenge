@@ -1,4 +1,7 @@
-import { IGrid, IItem, IParsedPackageLine } from 'types';
+// This is a knapsack sort of problem, using dynamic programming can give us a deterministic solution
+// You can read this chapter for free here: https://livebook.manning.com/book/grokking-algorithms/chapter-9/1
+
+import { IGrid, IGridCell, IItem, IParsedPackageLine } from 'types';
 import _ from 'lodash';
 
 export default function getOptimalItems(parsedPackageLine: IParsedPackageLine) {
@@ -39,7 +42,7 @@ function buildGrid(parsedPackageLine: IParsedPackageLine) {
 }
 
 function getCell(grid: IGrid, items: IItem[], itemIndex: number, maxWeightForCell: number) {
-  const DEFAULT_CELL = { maxValue: 0, items: [] };
+  const DEFAULT_CELL: IGridCell = { maxValue: 0, items: [] };
 
   const columnIndex = maxWeightForCell - 1;
   const rowIndex = itemIndex - 1;
@@ -57,8 +60,16 @@ function getCell(grid: IGrid, items: IItem[], itemIndex: number, maxWeightForCel
   const bestValueForRemainingWeight = bestCellForRemainingWeight.maxValue;
 
   const newValue = bestValueForRemainingWeight + currentItem.cost;
+  const newItems = [...bestCellForRemainingWeight.items, currentItem];
+
   if (newValue >= lastValue) {
-    return { maxValue: newValue, items: [...bestCellForRemainingWeight.items, currentItem] };
+    return { maxValue: newValue, items: newItems };
+  } else if (newValue === lastValue) {
+    const newItemsWeight = items.reduce((sum, item) => sum + item.weight, 0);
+    const lastSolutionItemsWeight = lastBestCellForThisWeight.items.reduce((sum, item) => sum + item.weight, 0);
+    const lastSolutionIsBetter = newItemsWeight > lastSolutionItemsWeight;
+
+    return lastSolutionIsBetter ? lastBestCellForThisWeight : { maxValue: newValue, items: newItems };
   } else {
     return lastBestCellForThisWeight;
   }
