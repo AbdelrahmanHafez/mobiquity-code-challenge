@@ -37,6 +37,9 @@ function sanitizeRawItem(rawItem: string) {
 }
 
 export function validateRawPackageLine(string) {
-  const packageLineRegex = /^\d+(\.\d+)? : (\(\d+(\.\d+)?,\d+(\.\d+)?,€\d+(\.\d+)?\))( (\(\d+(\.\d+)?,\d+(\.\d+)?,€\d+(\.\d+)?\))){0,}$/;
+
+  const numberWithPossibleDecimalsRegEx = '\\d+(\\.\\d+)?';
+  const num = numberWithPossibleDecimalsRegEx;
+  const packageLineRegex = new RegExp(`^${num} : (\\(${num},${num},€${num}\\))( (\\(${num},${num},€${num}\\))){0,}$`);
   return packageLineRegex.test(string);
 }
