@@ -16,6 +16,17 @@ $ yarn
 $ yarn test
 ```
 
+Check-list:
+- [x] Find the items with the max cost that fit into the package.
+- [x] Send the packages with the lowest weight if the cost is the same.
+- [x] Accept file name as an argument to the `pack(...)` function.
+- [x] Parse the raw lines into objects and arrays.
+- [x] Throw validation error if a line is invalid.
+- [x] Max weight that a package can take is <= 100.
+- [x] There might be up to 15 items you need to choose from.
+- [x] Max weight and cost of an item is <= 100.
+
+
 In order to test with custom text files, add any file you'd like in the directory called [text-files](./text-files), and run the [pack function](./src/pack.ts) with the file name as a parameter.
 
 e.g. (for testing with a file called "test-file.txt" that we added in [text-files](./text-files) directory)
