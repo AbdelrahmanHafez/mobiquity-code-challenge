@@ -39,6 +39,7 @@ function sanitizeRawItem(rawItem: IRawItem) {
 export function validateRawPackageLine(string) {
   const numberWithPossibleDecimalsRegEx = '\\d+(\\.\\d+)?';
   const num = numberWithPossibleDecimalsRegEx;
-  const packageLineRegex = new RegExp(`^${num} : (\\(${num},${num},€${num}\\))( (\\(${num},${num},€${num}\\))){0,}$`);
+  const pacakgeRegex = `\\(${num},${num},€${num}\\)`;
+  const packageLineRegex = new RegExp(`^${num} : (${pacakgeRegex})( (${pacakgeRegex})){0,}$`);
   return packageLineRegex.test(string);
 }
