@@ -7,8 +7,6 @@ describe('pack(...)', () => {
   });
   it('returns the optimal items', async() => {
     // Arrange
-
-
     // Act
     const receivedResponse = await pack('stub1.txt');
 
@@ -17,6 +15,5 @@ describe('pack(...)', () => {
       receivedResponse,
       '4\n-\n2,7\n8,9'
     );
-
   });
 });

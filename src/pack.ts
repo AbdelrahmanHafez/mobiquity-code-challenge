@@ -6,6 +6,10 @@ export async function pack(fileName: string) {
 
   const packagesLines = packagesLinesSingleChunk.replace(/\r/g, '').split('\n');
   const results = packagesLines.map(processLine);
+  const stringifiedResult = results.join('\n');
 
-  return results.join('\n');
+  console.log(`Input:\n${packagesLinesSingleChunk}.`);
+  console.log(`Output:\n${stringifiedResult}.`);
+
+  return stringifiedResult;
 }
