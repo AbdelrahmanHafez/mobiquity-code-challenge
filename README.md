@@ -8,6 +8,7 @@ The following technologies are used to solve this problem:
 * Mocha as the testing framework.
 * Yarn as the package manager.
 
+## Getting started
 To run the tests, clone the repository, and run the following commands:
 ```bash
 $ git clone https://github.com/AbdelrahmanHafez/mobiquity-code-challenge.git
@@ -16,7 +17,7 @@ $ yarn
 $ yarn test
 ```
 
-Check-list:
+## Check-list
 - [x] Find the items with the max cost that fit into the package.
 - [x] Send the packages with the lowest weight if the cost is the same.
 - [x] Accept file name as an argument to the `pack(...)` function.
@@ -26,7 +27,7 @@ Check-list:
 - [x] There might be up to 15 items you need to choose from.
 - [x] Max weight and cost of an item is <= 100.
 
-
+## Manual testing
 In order to test with custom text files, add any file you'd like in the directory called [text-files](./text-files), and run the [pack function](./src/pack.ts) with the file name as a parameter.
 
 e.g. (for testing with a file called "test-file.txt" that we added in [text-files](./text-files) directory)
