@@ -1,3 +1,4 @@
+export * from './packing.error';
 import { pack } from './pack';
 
 
