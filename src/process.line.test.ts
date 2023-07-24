@@ -1,5 +1,6 @@
 import assert from 'assert';
 import processLine from './process.line';
+import { PackingError } from './packing.error';
 
 describe('processLine(...)', () => {
   const testCases = [
@@ -34,25 +35,21 @@ describe('processLine(...)', () => {
     });
   }
 
-  it('returns `-` when an error is thrown', () => {
+  it('throws an error on invalid lines', () => {
     // Arrange
     const rawLine = 'I am an invalid line';
 
     // Act
-    const receivedResponse = processLine(rawLine);
-
     // Assert
-    assert.deepStrictEqual(receivedResponse, '-');
+    assert.throws(() => processLine(rawLine), PackingError);
   });
 
-  it('returns `-` when a constraint is being violated', () => {
+  it('throws an error when a constraint is being violated', () => {
     // Arrange
     const rawLine = '8 : (1,1000,€34)';
 
     // Act
-    const receivedResponse = processLine(rawLine);
-
     // Assert
-    assert.deepStrictEqual(receivedResponse, '-');
+    assert.throws(() => processLine(rawLine), PackingError);
   });
 });

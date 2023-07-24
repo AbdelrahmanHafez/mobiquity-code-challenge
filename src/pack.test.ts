@@ -8,7 +8,7 @@ describe('pack(...)', () => {
   it('returns the optimal items', async() => {
     // Arrange
     // Act
-    const receivedResponse = await pack('stub1.txt');
+    const receivedResponse = await pack('./text-files/stub1.txt');
 
     // Assert
     assert.deepStrictEqual(

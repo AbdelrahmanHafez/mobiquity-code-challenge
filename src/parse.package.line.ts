@@ -1,9 +1,10 @@
+import { PackingError } from './packing.error';
 import { IItem, IParsedPackageLine, IRawItem, IRawLine } from './types';
 
 export default function parsePackageLine(rawLine: IRawLine): IParsedPackageLine {
   try {
     if (validateRawPackageLine(rawLine) === false) {
-      throw new Error(`Invalid package line \`${rawLine}\``);
+      throw new PackingError(`Invalid package line \`${rawLine}\``);
     }
 
     const [maximumWeightStringifed, rawItems] = rawLine.split(' : ');
@@ -17,7 +18,7 @@ export default function parsePackageLine(rawLine: IRawLine): IParsedPackageLine 
       items
     };
   } catch (err) {
-    throw new Error(`Invalid package line \`${rawLine}\``);
+    throw new PackingError(`Invalid package line \`${rawLine}\``);
   }
 }
 
