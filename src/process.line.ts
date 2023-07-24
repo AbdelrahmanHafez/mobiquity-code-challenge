@@ -1,4 +1,4 @@
-import { ILineResult, IRawLine } from 'types';
+import { ILineResult, IRawLine } from './types';
 import validatePackageLineConstraints from './validate.package.line.constraints';
 import parsePackageLine from './parse.package.line';
 import getOptimalItems from './get.optimal.items';

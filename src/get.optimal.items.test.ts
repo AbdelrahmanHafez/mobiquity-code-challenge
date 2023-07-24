@@ -1,6 +1,6 @@
 import assert from 'assert';
 import getOptimalItems from './get.optimal.items';
-import { IParsedPackageLine } from 'types';
+import { IParsedPackageLine } from './types';
 
 describe('getOptimalItems(...)', () => {
   it('is a function', () => {

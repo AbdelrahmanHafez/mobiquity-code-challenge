@@ -1,4 +1,4 @@
-import { IItem, IParsedPackageLine, IRawItem, IRawLine } from 'types';
+import { IItem, IParsedPackageLine, IRawItem, IRawLine } from './types';
 
 export default function parsePackageLine(rawLine: IRawLine): IParsedPackageLine {
   try {
@@ -36,7 +36,7 @@ function sanitizeRawItem(rawItem: IRawItem) {
   return rawItem.replace(/[()€]/g, '');
 }
 
-export function validateRawPackageLine(string) {
+export function validateRawPackageLine(string: string) {
   const numberWithPossibleDecimalsRegEx = '\\d+(\\.\\d+)?';
   const num = numberWithPossibleDecimalsRegEx;
   const pacakgeRegex = `\\(${num},${num},€${num}\\)`;

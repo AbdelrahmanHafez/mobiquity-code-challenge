@@ -2,7 +2,7 @@
 // This topic is explained in Grokking Algorithms Chapter 9, you can check it from the link below:
 // https://livebook.manning.com/book/grokking-algorithms/chapter-9/1
 
-import { IGrid, IGridCell, IItem, IParsedPackageLine } from 'types';
+import { IGrid, IGridCell, IItem, IParsedPackageLine } from './types';
 import _ from 'lodash';
 
 export default function getOptimalItems(parsedPackageLine: IParsedPackageLine) {

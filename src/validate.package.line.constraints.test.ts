@@ -1,7 +1,7 @@
 import assert from 'assert';
 import validateConstaints from './validate.package.line.constraints';
 import CONSTANTS from './helpers/constants';
-import { IParsedPackageLine } from 'types';
+import { IParsedPackageLine } from './types';
 
 
 describe('validateConstaints(...)', () => {

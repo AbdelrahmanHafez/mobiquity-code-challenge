@@ -1,5 +1,5 @@
 import CONSTANTS from './helpers/constants';
-import { IParsedPackageLine } from 'types';
+import { IParsedPackageLine } from './types';
 
 export default function validatePackageLineConstraints(parsedPackageLine: IParsedPackageLine) {
 
